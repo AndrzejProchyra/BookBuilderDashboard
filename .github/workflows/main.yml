@@ -1,4 +1,4 @@
-on: 
+on:
   workflow_call:
     inputs:
       bookname:
@@ -13,12 +13,16 @@ on:
         description: 'Create a release and upload the artifacts to it (needs token)'
         default: true
         type: boolean
-        
+      texlive_release:
+        description: 'The TeX Live release to use for the build ("YYYY" or "rolling")'
+        default: '2023'
+        type: string
+
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      TEXLIVE_RELEASE: '2023'
+      TEXLIVE_RELEASE: ${{ inputs.texlive_release }}
     
     steps:
 
